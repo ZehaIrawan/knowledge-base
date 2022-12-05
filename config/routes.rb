@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   # get "/articles/:id", to: "articles#show"
   # Combination CRUD of routes is called resources
   resources :articles
-
-  get "/keywords", to: "keywords#index"
+  resources :keywords
+  # get "/keywords", to: "keywords#index"
 end

@@ -1,0 +1,13 @@
+<%= form_with model: keyword do |form| %>
+  <div>
+    <%= form.label :query %><br>
+    <%= form.text_field :query %>
+    <% keyword.errors.full_messages_for(:query).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

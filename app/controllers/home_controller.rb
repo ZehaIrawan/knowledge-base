@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    render
+     @keywords = Keyword.all
+     @articles = Article.all
   end
 end
