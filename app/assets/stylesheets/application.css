@@ -14,7 +14,44 @@
  *= require_self
  */
 
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+
+
+body{
+  font-family: "Muli",sans-serif;
+}
+
  #query{
   display: block;
   margin-bottom: 1rem;
  }
+
+#header{
+  background: #DD1C5D;
+  height: 40vh;
+
+}
+
+.search-container{
+  max-width:1440px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.white{
+  color: white;
+}
+
+.temporary{
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+}

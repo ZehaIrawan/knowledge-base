@@ -1,3 +1,5 @@
+<div id="header" class="white">
+
 <% if user_signed_in? %>
  <div> Welcome <%= current_user.email %> </div>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
@@ -6,21 +8,28 @@
   <%=link_to "Sign Up",new_user_registration_path%>
 <% end %>
 
-<h1>HelloJuice!</h1>
+<div class="search-container">
 
-
-<h1>Articles</h1>
+<h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
 
 <%= form_with(url: articles_path, method: "GET", data: { controller: "form-submission", turbo_frame: "articles", turbo_action: "advance" }) do |form| %>
   <%= form.label :query, "Search by title:" %>
   <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
 <% end %>
+<h3>ASK QUESTIONS, FIND ARTICLES, CHAT WITH US</h3>
+</div>
+
 
 <%= render "articles", articles: @articles %>
 
+<div class="temporary">
+Delete everything below this line before submitting
 
 <%= link_to "New Article", new_article_path %>
 
 <%= link_to "Saved Keywords", "/keywords" %>
 
 <%= render :partial => "shared/header",articles: @article %>
+</div>
+
+</div>
