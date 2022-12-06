@@ -9,20 +9,26 @@ class ArticlesController < ApplicationController
       # check if any records value is included in params
 
       # if Keyword is empty then create
-      if Keyword.any?
-        Keyword.find_each do |keyword|
+      if Keyword.where(user:current_user).any?
+        Keyword.where(user:current_user).find_each do |keyword|
           if "#{params[:query].downcase}".include? keyword.query
-            @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
-            p "#{keyword.query} #{keyword.id} LOOK HERE"
-            # @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+            begin
+              @keyword.find_by(id: "#{keyword.id}").update!(:query => "#{params[:query].downcase}")
+              p "#{keyword.query} #{keyword.id} LOOK HERE"
+            rescue ActiveRecord::RecordInvalid => invalid
+              puts invalid.record.errors
+            end
           elsif keyword.query.include? "#{params[:query].downcase}"
             # do nothing
             p "PARAMS EXIST IN RECORDS"
-            # @keyword.create(user: @user, query:"#{params[:query].downcase}" )
           else
             p "CREATE NEW"
             # bug recording multiple kyword
-            @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+             begin
+              @keyword.create!(user: @user, query:"#{params[:query].downcase}" )
+            rescue ActiveRecord::RecordInvalid => invalid
+              puts invalid.record.errors
+            end
           end
         end
       else
@@ -31,6 +37,7 @@ class ArticlesController < ApplicationController
       else
         @articles = Article.all
     end
+
   end
 
   def show

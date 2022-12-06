@@ -94,6 +94,9 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.11.0)
+    ffi (1.15.5)
+    font-awesome-sass (6.2.1)
+      sassc (~> 2.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     htmlbeautifier (1.4.2)
@@ -179,6 +182,8 @@ GEM
       railties (>= 5.0)
     rexml (3.2.5)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -228,6 +233,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  font-awesome-sass (~> 6.2.1)
   htmlbeautifier
   importmap-rails
   jbuilder

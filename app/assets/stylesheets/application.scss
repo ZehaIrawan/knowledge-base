@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+ @import "font-awesome";
 
 * {
   margin:0;
@@ -20,10 +21,13 @@
   box-sizing: border-box;
 }
 
-
+html{
+  height: 100%;
+}
 
 body{
   font-family: "Muli",sans-serif;
+  height: 100%;
 }
 
  #query{
@@ -56,3 +60,12 @@ body{
   display: flex;
   flex-direction: row;
 }
+
+.icon{
+  font-size: 50px;
+  font-weight: 300;
+  height: 82px;
+  width: 82px;
+  color:tomato;
+}
+
