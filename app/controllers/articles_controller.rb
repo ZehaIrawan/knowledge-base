@@ -7,25 +7,27 @@ class ArticlesController < ApplicationController
 
       @keyword_exist = Keyword.where(user:current_user).where("query like ?", "#{params[:query].downcase}").any?
       # check if any records value is included in params
-      Keyword.find_each do |keyword|
-        if "#{params[:query].downcase}".include? keyword.query
-          @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
-           p "#{keyword.query} #{keyword.id} LOOK HERE"
-        elseif keyword.query.include? "#{params[:query].downcase}"
-          # do nothing
-          p "PARAMS EXIST IN RECORDS"
-        else
-          p "CREATE NEW"
-          @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+
+      # if Keyword is empty then create
+      if Keyword.any?
+        Keyword.find_each do |keyword|
+          if "#{params[:query].downcase}".include? keyword.query
+            @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
+            p "#{keyword.query} #{keyword.id} LOOK HERE"
+            # @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+          elsif keyword.query.include? "#{params[:query].downcase}"
+            # do nothing
+            p "PARAMS EXIST IN RECORDS"
+            # @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+          else
+            p "CREATE NEW"
+            # bug recording multiple kyword
+            @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+          end
         end
+      else
+         @keyword.create(user: @user, query:"#{params[:query].downcase}" )
       end
-      # p "LOOK AT ME #{params[:query].downcase} #{@keyword_exist}"
-        # When records query is included in params => replace record with params
-        # if @keyword_exist
-          # do nothing
-        # else
-          # @keyword.create(user: @user,query:"#{params[:query].downcase}" )
-        # end
       else
         @articles = Article.all
     end

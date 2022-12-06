@@ -18,7 +18,11 @@
   <div class="temporary">
     Delete everything below this line before submitting
     <%= link_to "Saved Keywords", "/keywords" %>
+    <div style="margin-right:1rem"></div>
     <%= link_to "New Article", new_article_path %>
+    <div style="margin-right:1rem"></div>
+    <%= link_to "Analytics", "/analytics" %>
+    <div style="margin-right:1rem"></div>
     <%= render :partial => "shared/header",articles: @article %>
   </div>
 </div>

@@ -1,0 +1,10 @@
+analytics page
+<ul>
+  <% @keywords.each do |keyword| %>
+    <li>
+     <span> <%= keyword.query %> </span>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Homepage", "/" %>
