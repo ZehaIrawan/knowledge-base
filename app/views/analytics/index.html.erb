@@ -1,9 +1,30 @@
 analytics page
+<br/>
+<br/>
+<%#=
+Bug
+how to create your coaching frameworks
+Volume :1
+
+query
+Volume :how to snippet a call
+
+placing calls in salesforce
+Volume :2
+
+how to snippet a call
+Volume :1
+%>
+
+
 <ul>
-  <% @keywords.each do |keyword| %>
+  <% @formatted_keywords.each do |keyword,count| %>
     <li>
-     <span> <%= keyword.query %> </span>
+     <span> <%= keyword%></span>
+     <br/>
+     <span> Volume :<%= count%></span>
     </li>
+     <br/>
   <% end %>
 </ul>
 
