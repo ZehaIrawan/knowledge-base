@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     @keyword = Keyword
     if params[:query].present?
       @articles = Article.where("title like ?", "%#{params[:query]}%")
-      @keyword.create!(user: @user,query:"#{params[:query]}" )
+      @keyword.create!(user: @user,query:"#{params[:query].downcase}" )
     else
       @articles = Article.all
     end
