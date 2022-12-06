@@ -3,10 +3,31 @@ class ArticlesController < ApplicationController
     @user = current_user
     @keyword = Keyword
     if params[:query].present?
-      @articles = Article.where("title like ?", "%#{params[:query]}%")
-      @keyword.create!(user: @user,query:"#{params[:query].downcase}" )
-    else
-      @articles = Article.all
+      @articles = Article.where("title like ?", "#{params[:query]}")
+
+      @keyword_exist = Keyword.where(user:current_user).where("query like ?", "#{params[:query].downcase}").any?
+      # check if any records value is included in params
+      Keyword.find_each do |keyword|
+        if "#{params[:query].downcase}".include? keyword.query
+          @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
+           p "#{keyword.query} #{keyword.id} LOOK HERE"
+        elseif keyword.query.include? "#{params[:query].downcase}"
+          # do nothing
+          p "PARAMS EXIST IN RECORDS"
+        else
+          p "CREATE NEW"
+          @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+        end
+      end
+      # p "LOOK AT ME #{params[:query].downcase} #{@keyword_exist}"
+        # When records query is included in params => replace record with params
+        # if @keyword_exist
+          # do nothing
+        # else
+          # @keyword.create(user: @user,query:"#{params[:query].downcase}" )
+        # end
+      else
+        @articles = Article.all
     end
   end
 
