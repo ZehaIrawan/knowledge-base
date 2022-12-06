@@ -8,6 +8,7 @@ class KeywordsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @keyword = Keyword.new(keyword_params)
 
     if @keyword.save
