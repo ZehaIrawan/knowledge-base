@@ -3,7 +3,10 @@ class ArticlesController < ApplicationController
     @user = current_user
     @keyword = Keyword
     @keywords = @user.keywords
+    @show_dropdown = false
+
     if params[:query].present?
+      @show_dropdown = true
       @articles = Article.where("title like ?", "%#{params[:query].downcase}%")
 
       p "NOT SHOWING #{@articles.length} #{params[:query]} #{@keywords.length}"
@@ -12,13 +15,13 @@ class ArticlesController < ApplicationController
       # check if any records value is included in params
 
       # if Keyword is empty then create
-      if  @user.keywords.any?
+      if @user.keywords.any?
         @user.keywords.each do |keyword|
           p "#{keyword.query} => ori"
           if params[:query].downcase.include? keyword.query
             # begin
-              @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
-              p "#{keyword.query} UPDATE EXISTING KEYWORD"
+            @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
+            p "#{keyword.query} UPDATE EXISTING KEYWORD"
             # rescue ActiveRecord::RecordInvalid => invalid
             #   puts invalid.record.errors
           end

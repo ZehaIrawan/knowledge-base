@@ -1,35 +1,20 @@
 <div id="header" class="white">
   <div class="search-container">
-
-<% if user_signed_in? %>
- <div> Welcome <%= current_user.email %> </div>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%=link_to "Sign In", new_user_session_path%>
-<% end %>
-
-
-
-
+    <% if user_signed_in? %>
+      <div> Welcome <%= current_user.email %> </div>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%=link_to "Sign In", new_user_session_path%>
+    <% end %>
     <h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
     <%= form_with(url: articles_path, method: "GET", data: { controller: "form-submission", turbo_frame: "articles", turbo_action: "advance" }) do |form| %>
       <%= form.label :query, "Search by title:" %>
       <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
     <% end %>
-
-
-    <%= render "articles", articles: @articles %>
+    <% if @show_dropdown %>
+      <%= render "articles", articles: @articles %>
+    <% end %>
     <h3 style="margin-top:1rem">ASK QUESTIONS, FIND ARTICLES, CHAT WITH US</h3>
-  </div>
-  <div class="temporary">
-    Delete everything below this line before submitting
-    <%= link_to "Saved Keywords", "/keywords" %>
-    <div style="margin-right:1rem"></div>
-    <%= link_to "New Article", new_article_path %>
-    <div style="margin-right:1rem"></div>
-    <%= link_to "Analytics", "/analytics" %>
-    <div style="margin-right:1rem"></div>
-    <%= render :partial => "shared/header",articles: @article %>
   </div>
 
   <div class="grid-container">
@@ -37,43 +22,33 @@
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
     <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
     <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
-
-  <div class="card">
+    <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
-
-  <div class="card">
+    <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
-  <div class="card">
+    <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
-  <div class="card">
+    <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
-
-  <div class="card">
+    <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>
       <span>COACHING</span>
     </div>
   </div>
-
 </div>
