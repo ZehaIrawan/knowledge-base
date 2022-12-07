@@ -219,6 +219,7 @@ h1,h2{
   height: 3rem;
   border: none;
   padding: 0rem 1rem;
+  outline: none;
 }
 
 .dropdown{
@@ -232,6 +233,18 @@ h1,h2{
       width: 25vw;
   }
 }
+
+.dropdown a{
+  display: block;
+  color: #DD1C5D;
+  text-decoration: none;
+  padding: 4px 0px;
+}
+
+.dropdown a:hover{
+  text-decoration: underline;
+}
+
 
 .auth-container{
   display: block;
