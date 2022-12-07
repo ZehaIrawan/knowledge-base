@@ -19,7 +19,8 @@ class KeywordsController < ApplicationController
   end
 
   private
-    def keyword_params
-      params.require(:keyword).permit(:query)
-    end
+
+  def keyword_params
+    params.require(:keyword).permit(:query)
+  end
 end

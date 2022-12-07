@@ -1,41 +1,34 @@
 <div class="analytics-container">
-<h1>Analytics page</h1>
-
-<h2>Unique search terms</h2>
-
-<table>
-  <tr>
-    <th class="text-left">Keyword </th>
-    <th class="text-left">Volume</th>
-  </tr>
- <% @formatted_keywords.each do |keyword,count| %>
-  <tr>
-    <td class="text-left"><%=keyword%></td>
-    <td class="text-center"><%= count%></td>
-  </tr>
-  <% end %>
- </table>
-
-<br/>
-<br/>
-
-<h2>Trending</h2>
-<%# In the past 24h, week, month %>
-<%# Keyword trending if they pass certain number %>
-
-<table>
-  <tr>
-    <th class="text-left">Keyword </th>
-    <th class="text-left">Volume</th>
-  </tr>
- <% @formatted_keywords.each do |keyword,count| %>
-  <tr>
-    <td class="text-left"><%=keyword%></td>
-    <td class="text-center"><%= count%></td>
-  </tr>
-  <% end %>
- </table>
-
-<%= link_to "Homepage", "/" %>
-
+  <h1>Analytics page</h1>
+  <h2>Unique search terms</h2>
+  <table>
+    <tr>
+      <th class="text-left">Keyword </th>
+      <th class="text-left">Volume</th>
+    </tr>
+    <% @formatted_keywords.each do |keyword,count| %>
+      <tr>
+        <td class="text-left"><%=keyword%></td>
+        <td class="text-center"><%= count%></td>
+      </tr>
+    <% end %>
+  </table>
+  <br/>
+  <br/>
+  <h2>Trending</h2>
+  <%# In the past 24h, week, month %>
+  <%# Keyword trending if they pass certain number %>
+  <table>
+    <tr>
+      <th class="text-left">Keyword </th>
+      <th class="text-left">Volume</th>
+    </tr>
+    <% @formatted_keywords.each do |keyword,count| %>
+      <tr>
+        <td class="text-left"><%=keyword%></td>
+        <td class="text-center"><%= count%></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Homepage", "/" %>
 </div>

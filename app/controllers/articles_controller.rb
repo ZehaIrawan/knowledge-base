@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     if params[:query].present?
       @articles = Article.where("title like ?", "#{params[:query]}")
 
-      @keyword_exist = Keyword.where(user:current_user).where("query like ?", "#{params[:query].downcase}").any?
+      @keyword_exist = Keyword.where(user: current_user).where("query like ?", "#{params[:query].downcase}").any?
       # check if any records value is included in params
 
       # if Keyword is empty then create
@@ -24,20 +24,19 @@ class ArticlesController < ApplicationController
           else
             p "CREATE NEW"
             # bug recording multiple kyword
-             begin
-              @keyword.create!(user_id: @user.user_id, query:"#{params[:query].downcase}" )
+            begin
+              @keyword.create!(user_id: @user.user_id, query: "#{params[:query].downcase}")
             rescue ActiveRecord::RecordInvalid => invalid
               puts invalid.record.errors
             end
           end
         end
       else
-         @keyword.create(user: @user, query:"#{params[:query].downcase}" )
+        @keyword.create(user: @user, query: "#{params[:query].downcase}")
       end
-      else
-        @articles = Article.all
+    else
+      @articles = Article.all
     end
-
   end
 
   def show
@@ -80,7 +79,8 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body)
-    end
+
+  def article_params
+    params.require(:article).permit(:title, :body)
+  end
 end
