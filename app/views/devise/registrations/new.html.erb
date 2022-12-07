@@ -1,0 +1,23 @@
+<div class="login-container">
+  <h1>Sign Up</h1>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="flex col space-top">
+      <%= f.label :email, class: "login-label" %>
+      <%= f.email_field :email, placeholder: 'e.g. jon@snow.com' , class: "login-input"%>
+    </div>
+    <div class="flex col space-top">
+      <%= f.label :password, class: "login-label"  %>
+      <%= f.password_field :password, autocomplete: "off", class: "login-input" %>
+    </div>
+       <div class="flex col space-top">
+      <%= f.label :password, class: "login-label"  %>
+      <%= f.password_field :password, autocomplete: "off", class: "login-input" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Sign Up", class: "space-top login-btn" %>
+    </div>
+    <div class="space-top devise-link">
+      <%=link_to "Sign In", new_user_session_path %>
+    </div>
+  <% end %>
+</div>

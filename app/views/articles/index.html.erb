@@ -1,12 +1,16 @@
 <div id="header" class="white">
-  <% if user_signed_in? %>
-    <div> Welcome <%= current_user.email %> </div>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%=link_to "Sign In", new_user_session_path%>
-    <%=link_to "Sign Up",new_user_registration_path%>
-  <% end %>
   <div class="search-container">
+
+<% if user_signed_in? %>
+ <div> Welcome <%= current_user.email %> </div>
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%=link_to "Sign In", new_user_session_path%>
+<% end %>
+
+
+
+
     <h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
     <%= form_with(url: articles_path, method: "GET", data: { controller: "form-submission", turbo_frame: "articles", turbo_action: "advance" }) do |form| %>
       <%= form.label :query, "Search by title:" %>

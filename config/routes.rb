@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root "home#index"
+  root "articles#index"
   # Combination CRUD of routes is called resources
   resources :articles
   resources :keywords
