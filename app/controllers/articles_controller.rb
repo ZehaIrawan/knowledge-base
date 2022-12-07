@@ -2,38 +2,43 @@ class ArticlesController < ApplicationController
   def index
     @user = current_user
     @keyword = Keyword
+    @keywords = @user.keywords
     if params[:query].present?
-      @articles = Article.where("title like ?", "%#{params[:query]}%")
+      @articles = Article.where("title like ?", "%#{params[:query].downcase}%")
 
-      p "NOT SHOWING #{@articles.length} #{params[:query]}"
+      p "NOT SHOWING #{@articles.length} #{params[:query]} #{@keywords.length}"
 
-      @keyword_exist = Keyword.where(user: current_user).where("query like ?", "%#{params[:query].downcase}%").any?
+      # @keyword_exist = Keyword.where(user: current_user).where("query like ?", "#{params[:query].downcase}").any?
       # check if any records value is included in params
 
       # if Keyword is empty then create
-      if Keyword.where(user: @user).any?
-        Keyword.where(user: @user).find_each do |keyword|
-          if "#{params[:query].downcase}".include? keyword.query
-            begin
-              @keyword.find_by(id: "#{keyword.id}").update!(:query => "%#{params[:query].downcase}%")
-              p "#{keyword.query} #{keyword.id} LOOK HERE"
-            rescue ActiveRecord::RecordInvalid => invalid
-              puts invalid.record.errors
-            end
-          elsif keyword.query.include? "%#{params[:query].downcase}%"
+      if  @user.keywords.any?
+        @user.keywords.each do |keyword|
+          p "#{keyword.query} => ori"
+          if params[:query].downcase.include? keyword.query
+            # begin
+              @keyword.find_by(id: "#{keyword.id}").update(:query => "#{params[:query].downcase}")
+              p "#{keyword.query} UPDATE EXISTING KEYWORD"
+            # rescue ActiveRecord::RecordInvalid => invalid
+            #   puts invalid.record.errors
+          end
+          if keyword.query.include? params[:query].downcase
             # do nothing
-            p "PARAMS EXIST IN RECORDS"
-          else
-            p "CREATE NEW"
+            p "DO NOTHING => PARAMS EXIST IN RECORDS"
+          end
+          if keyword.query.downcase.exclude? "#{params[:query]}"
+            p "CREATE NEW #{keyword.query.exclude? "#{params[:query].downcase}"}"
+            p "CREATE NEW2 #{keyword.query} #{"#{params[:query].downcase}"}"
             # bug recording multiple kyword
-            begin
-              @keyword.create!(user: @user, query: "%#{params[:query].downcase}%")
-            rescue ActiveRecord::RecordInvalid => invalid
-              puts invalid.record.errors
-            end
+            # begin
+            @keyword.create(user: @user, query: "#{params[:query].downcase}")
+            # rescue ActiveRecord::RecordInvalid => invalid
+            #   puts invalid.record.errors
+            # end
           end
         end
       else
+        puts "GOES TO SS"
         @keyword.create(user: @user, query: "#{params[:query].downcase}")
       end
     else

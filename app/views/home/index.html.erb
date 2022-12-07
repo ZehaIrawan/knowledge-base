@@ -7,25 +7,3 @@
 
 <h1>HelloJuice!</h1>
 
-
-<%= link_to "Articles",articles_path  %>
-
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= link_to article.title, article %>
-    </li>
-  <% end %>
-</ul>
-
-
-Keyword query
-<ul>
-  <% @keywords.each do | keyword | %>
-    <li>
-      <%= keyword.query %>
-    </li>
-  <% end %>
-</ul>
-
-<%= render :partial => "shared/header" %>
