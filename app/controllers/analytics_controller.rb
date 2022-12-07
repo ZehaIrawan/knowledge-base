@@ -8,8 +8,7 @@ class AnalyticsController < ApplicationController
     @keywords.each { |keyword|
       @formatted_keywords[keyword[:query]] += 1
       if @formatted_keywords[keyword[:query]] < 1
-        @formatted_keywords[:que
-          ry] = keyword[:query]
+        @formatted_keywords[:query] = keyword[:query]
       end
     }
   end

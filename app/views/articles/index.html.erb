@@ -12,6 +12,8 @@
       <%= form.label :query, "Search by title:" %>
       <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
     <% end %>
+
+
     <%= render "articles", articles: @articles %>
     <h3 style="margin-top:1rem">ASK QUESTIONS, FIND ARTICLES, CHAT WITH US</h3>
   </div>

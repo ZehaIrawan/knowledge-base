@@ -3,29 +3,31 @@ class ArticlesController < ApplicationController
     @user = current_user
     @keyword = Keyword
     if params[:query].present?
-      @articles = Article.where("title like ?", "#{params[:query]}")
+      @articles = Article.where("title like ?", "%#{params[:query]}%")
 
-      @keyword_exist = Keyword.where(user: current_user).where("query like ?", "#{params[:query].downcase}").any?
+      p "NOT SHOWING #{@articles.length} #{params[:query]}"
+
+      @keyword_exist = Keyword.where(user: current_user).where("query like ?", "%#{params[:query].downcase}%").any?
       # check if any records value is included in params
 
       # if Keyword is empty then create
-      if Keyword.where(user_id: @user.user_id).any?
-        Keyword.where(user_id: @user.user_id).find_each do |keyword|
+      if Keyword.where(user: @user).any?
+        Keyword.where(user: @user).find_each do |keyword|
           if "#{params[:query].downcase}".include? keyword.query
             begin
-              @keyword.find_by(id: "#{keyword.id}").update!(:query => "#{params[:query].downcase}")
+              @keyword.find_by(id: "#{keyword.id}").update!(:query => "%#{params[:query].downcase}%")
               p "#{keyword.query} #{keyword.id} LOOK HERE"
             rescue ActiveRecord::RecordInvalid => invalid
               puts invalid.record.errors
             end
-          elsif keyword.query.include? "#{params[:query].downcase}"
+          elsif keyword.query.include? "%#{params[:query].downcase}%"
             # do nothing
             p "PARAMS EXIST IN RECORDS"
           else
             p "CREATE NEW"
             # bug recording multiple kyword
             begin
-              @keyword.create!(user_id: @user.user_id, query: "#{params[:query].downcase}")
+              @keyword.create!(user: @user, query: "%#{params[:query].downcase}%")
             rescue ActiveRecord::RecordInvalid => invalid
               puts invalid.record.errors
             end
