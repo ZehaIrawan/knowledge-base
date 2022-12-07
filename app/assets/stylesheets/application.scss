@@ -185,10 +185,10 @@ h1,h2{
   display: grid;
   grid-template-columns: 1;
   grid-template-rows: 1;
-  grid-row-gap: 15px;
-  grid-column-gap: 15px;
+  grid-row-gap: 25px;
+  grid-column-gap: 25px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 8rem auto;
   padding: 0rem 1rem;
   @media screen and (min-width: 900px) {
     grid-template-columns: repeat(2,auto);
@@ -197,5 +197,37 @@ h1,h2{
   @media screen and (min-width: 1200px) {
     grid-template-columns: repeat(4,auto);
     grid-template-rows: repeat(4, auto);
+  }
+}
+
+.search-bar{
+  position:relative;
+  width: 100%;
+  padding: 0rem 1rem;
+  @media screen and (min-width: 900px) {
+      width: 25vw;
+  }
+}
+
+.search-bar input{
+  width: 100%;
+  @media screen and (min-width: 900px) {
+      width: 25vw;
+  }
+  border-radius: 25px;
+  height: 3rem;
+  border: none;
+  padding: 0rem 1rem;
+}
+
+.dropdown{
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  background-color: white;
+  color: #2b2d42;
+  width: 95%;
+  @media screen and (min-width: 900px) {
+      width: 25vw;
   }
 }

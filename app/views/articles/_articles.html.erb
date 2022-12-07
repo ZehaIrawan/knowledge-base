@@ -1,4 +1,5 @@
-<%= turbo_frame_tag "articles" do %>
-      <%= puts "#{@articles} LOOK"%>
-  <%= render articles %>
-<% end %>
+<div class="dropdown">
+  <%= turbo_frame_tag "articles" do %>
+    <%= render articles %>
+  <% end %>
+</div>
