@@ -1,26 +1,25 @@
 <div id="header" class="white">
-  <div class="search-container">
+  <div class="auth-container">
     <% if user_signed_in? %>
       <div> Welcome <%= current_user.email %> </div>
       <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
     <% else %>
       <%=link_to "Sign In", new_user_session_path%>
     <% end %>
+  </div>
+  <div class="search-container">
     <h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
-
     <div class="search-bar">
       <%= form_with(url: articles_path, method: "GET", data: { controller: "form-submission", turbo_frame: "articles", turbo_action: "advance" }) do |form| %>
         <%= form.label :query, "Search by title:" %>
         <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
       <% end %>
-
-    <% if @show_dropdown %>
-      <%= render "articles", articles: @articles %>
-    <% end %>
+      <% if @show_dropdown %>
+        <%= render "articles", articles: @articles %>
+      <% end %>
     </div>
     <h3 style="margin-top:1rem">ASK QUESTIONS, FIND ARTICLES, CHAT WITH US</h3>
   </div>
-
   <div class="grid-container">
     <div class="card">
       <span class="icon"> <i class="fa-solid fa-house"></i> </span>

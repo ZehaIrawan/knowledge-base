@@ -211,6 +211,7 @@ h1,h2{
 
 .search-bar input{
   width: 100%;
+  margin-top: 1rem;
   @media screen and (min-width: 900px) {
       width: 25vw;
   }
@@ -230,4 +231,11 @@ h1,h2{
   @media screen and (min-width: 900px) {
       width: 25vw;
   }
+}
+
+.auth-container{
+  display: block;
+  display: flex;
+  justify-content: right;
+  padding: 1rem;
 }
