@@ -1,31 +1,41 @@
-analytics page
-<br/>
-<br/>
-<%#=
-Bug
-how to create your coaching frameworks
-Volume :1
+<div class="analytics-container">
+<h1>Analytics page</h1>
 
-query
-Volume :how to snippet a call
+<h2>Unique search terms</h2>
 
-placing calls in salesforce
-Volume :2
-
-how to snippet a call
-Volume :1
-%>
-
-
-<ul>
-  <% @formatted_keywords.each do |keyword,count| %>
-    <li>
-     <span> <%= keyword%></span>
-     <br/>
-     <span> Volume :<%= count%></span>
-    </li>
-     <br/>
+<table>
+  <tr>
+    <th class="text-left">Keyword </th>
+    <th class="text-left">Volume</th>
+  </tr>
+ <% @formatted_keywords.each do |keyword,count| %>
+  <tr>
+    <td class="text-left"><%=keyword%></td>
+    <td class="text-center"><%= count%></td>
+  </tr>
   <% end %>
-</ul>
+ </table>
+
+<br/>
+<br/>
+
+<h2>Trending</h2>
+<%# In the past 24h, week, month %>
+<%# Keyword trending if they pass certain number %>
+
+<table>
+  <tr>
+    <th class="text-left">Keyword </th>
+    <th class="text-left">Volume</th>
+  </tr>
+ <% @formatted_keywords.each do |keyword,count| %>
+  <tr>
+    <td class="text-left"><%=keyword%></td>
+    <td class="text-center"><%= count%></td>
+  </tr>
+  <% end %>
+ </table>
 
 <%= link_to "Homepage", "/" %>
+
+</div>
