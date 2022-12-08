@@ -1,5 +1,10 @@
-<div class="dropdown">
+
+<% if @articles.length == 0 %>
+  <div class="dropdown">Nothing here</div>
+<% else %>
   <%= turbo_frame_tag "articles" do %>
-    <%= render articles %>
+   <div class="dropdown">
+    <%= render @articles %>
+   </div>
   <% end %>
-</div>
+<% end %>

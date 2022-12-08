@@ -50,7 +50,7 @@ h1,h2{
 
  #query{
   display: block;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
  }
 
 #header{
@@ -188,7 +188,7 @@ h1,h2{
   grid-row-gap: 25px;
   grid-column-gap: 25px;
   max-width: 1200px;
-  margin: 8rem auto;
+  margin: 1rem auto;
   padding: 0rem 1rem;
   @media screen and (min-width: 900px) {
     grid-template-columns: repeat(2,auto);
@@ -200,10 +200,29 @@ h1,h2{
   }
 }
 
+.search-input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 3rem;
+  border: none;
+  border: 1px;
+  // background-color: black;
+  outline: none;
+}
+
 .search-bar{
+  padding: 0rem 1rem;
+    border-radius: 25px;
   position:relative;
   width: 100%;
   padding: 0rem 1rem;
+  @media screen and (min-width: 900px) {
+      width: 25vw;
+  }
+    background: white;
+        width: 100%;
   @media screen and (min-width: 900px) {
       width: 25vw;
   }
@@ -211,14 +230,8 @@ h1,h2{
 
 .search-bar input{
   width: 100%;
-  margin-top: 1rem;
-  @media screen and (min-width: 900px) {
-      width: 25vw;
-  }
-  border-radius: 25px;
-  height: 3rem;
+  height: 2.9rem;
   border: none;
-  padding: 0rem 1rem;
   outline: none;
 }
 
@@ -234,14 +247,14 @@ h1,h2{
   }
 }
 
-.dropdown a{
+.dropdown p a, .not-found a{
   display: block;
   color: #DD1C5D;
   text-decoration: none;
   padding: 4px 0px;
 }
 
-.dropdown a:hover{
+.dropdown a:hover, .not-found a:hover{
   text-decoration: underline;
 }
 

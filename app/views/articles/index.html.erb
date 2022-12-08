@@ -9,15 +9,21 @@
   </div>
   <div class="search-container">
     <h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
-    <div class="search-bar">
-      <%= form_with(url: articles_path, method: "GET", data: { controller: "form-submission", turbo_frame: "articles", turbo_action: "advance" }) do |form| %>
-        <%= form.label :query, "Search by title:" %>
-        <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
-      <% end %>
-      <% if @show_dropdown %>
+
+
+     <div class="search-bar">
+      <form data-controller="form-submission" data-turbo-frame="articles" data-turbo-action="advance" action="/articles" accept-charset="UTF-8" method="get" data-np-checked="1" data-np-autofill-type="other">
+        <div class="search-input">
+          <span class="icon" style="font-size:18px;display:block;height:auto;width:auto;padding-right:0.5rem"> <i class="fa-solid fa-magnifying-glass"></i> </span>
+          <input data-action="input->form-submission#search" type="text" name="query" id="query" data-np-checked="1">
+        </div>
+        </form>
+        <% if @show_dropdown %>
         <%= render "articles", articles: @articles %>
       <% end %>
     </div>
+
+
     <h3 style="margin-top:1rem">ASK QUESTIONS, FIND ARTICLES, CHAT WITH US</h3>
   </div>
   <div class="grid-container">
