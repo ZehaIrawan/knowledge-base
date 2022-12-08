@@ -8,3 +8,5 @@ Demo
 Analytics page
 
 <img src="./app/assets/images/analytics.png" width="40%"/>
+
+

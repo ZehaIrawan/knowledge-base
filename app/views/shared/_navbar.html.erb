@@ -1,0 +1,17 @@
+<div class="auth-container">
+    <% if user_signed_in? %>
+      <div>
+      <%=link_to  "/", class:"home-logo" do%>
+        <i class="fa-solid fa-hippo" style="font-size:40px"></i>
+        <span>Home</span>
+      <% end %>
+      </div>
+      <div class="flex">
+      <%=link_to "Analytics", "/analytics", class:"link"%>
+      <div> Welcome <%= current_user.email %> </div>
+      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"sign_out_btn" %>
+      </div>
+    <% else %>
+      <%=link_to "Sign In", new_user_session_path%>
+    <% end %>
+</div>

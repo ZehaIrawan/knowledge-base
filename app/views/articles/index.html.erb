@@ -1,12 +1,7 @@
 <div id="header" class="white">
-  <div class="auth-container">
-    <% if user_signed_in? %>
-      <div> Welcome <%= current_user.email %> </div>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%=link_to "Sign In", new_user_session_path%>
-    <% end %>
-  </div>
+
+
+  <%= render :partial => "shared/navbar" %>
   <div class="search-container">
     <h1>ADVICE & SUPPORT FROM OUR TEAM</h1>
 
